@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Your Website{% endblock %}</title>
+    <!-- Add your CSS and other meta tags here -->
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <!-- Add more navigation links as needed -->
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+    
+    <footer>
+        <!-- Add footer content here -->
+    </footer>
+    
+    <!-- Add your JavaScript libraries and scripts here -->
+</body>
+</html>

@@ -1,0 +1,36 @@
+{% extends 'todos/base.html' %}
+
+{% block content %}
+    <h1>TODO List</h1>
+    <form id="add-todo-form">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit">Add Task</button>
+    </form>
+    <ul id="todo-list">
+        {% for todo in todos %}
+            <li>{{ todo.task }}</li>
+        {% endfor %}
+    </ul>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $("#add-todo-form").submit(function(event) {
+            event.preventDefault();
+            var formData = $(this).serialize();
+            $.ajax({
+                type: "POST",
+                url: "{% url 'add_todo' %}",
+                data: formData,
+                success: function(response) {
+                    $("#todo-list").append("<li>" + response.task + "</li>");  // Corrected line
+                    $("#add-todo-form")[0].reset();
+                },
+                error: function(error) {
+                    console.error("Error adding task:", error);
+                }
+            });
+        });
+    });
+    </script>
+{% endblock %}
